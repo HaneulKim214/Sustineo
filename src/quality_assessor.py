@@ -13,7 +13,7 @@ class EmissionsQualityAssessor:
         """
         Simple validation: Are Scope 2 emissions calculations valid according to GHG Protocol?
         
-        Things to check score_range=[0,1]:
+        Things to check:
         1. Basic data structure
         2. Required columns(co2e emission)/data for GHG Protocol
             2.1. Must include electricity, steam, heating, and cooling
@@ -36,8 +36,6 @@ class EmissionsQualityAssessor:
             }
         
         # Check 2: Required columns/data for GHG Protocol
-        ### Improvements: Should handle synonyms. -> Should do some data engineering or notice users to change column name apporpriately.
-        # For example, 'CO2e_Tonnes' -> 'emissions_tco2e' 
         required_cols = ['CO2e_Tonnes']
         scope2_cols = scope2_data.columns   
         missing_cols = [col for col in required_cols if col not in scope2_cols]

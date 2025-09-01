@@ -44,7 +44,6 @@ class DocumentProcessor:
         # Extract text using OCR
         text = pytesseract.image_to_string(img)
         return text
-
     
     def _is_scanned_page(self, page) -> bool:
         """Detect if a page is scanned (has images but no text)"""

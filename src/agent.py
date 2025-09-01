@@ -37,11 +37,7 @@ class EmissionsInsightsAgent:
         self._setup_prompts()
     
     def initialize(self, data_path: str = "data/raw"):
-        """Initialize agent with data
-        
-        params:
-            data_path: str, Path to the data folder
-        """
+        """Initialize agent with data"""
         print("Initializing Emissions Insights Agent...")
         # Create data summary from emissions data
         self.emissions_data = self.data_loader.load_data(files=['scope1.csv', 'scope2.csv', 'scope3.csv'])
@@ -139,7 +135,7 @@ Data Records:
             ghg_context_txt += f"{i+1}. {context['content']} \n\n"
         
         # Generate answer using LLM
-        chain = self.qa_prompt | self.llm # LAngChain Expresison LAngugage
+        chain = self.qa_prompt | self.llm
         
         response = chain.invoke({
                 'ghg_context':ghg_context_txt,
@@ -165,10 +161,6 @@ Data Records:
         
         # Perform validation
         validation_result = self.quality_assessor.assess_scope2_validity(scope2_data)
-        
-        # Add GHG Protocol context
-        ### Improvements: It shouldn't be manual, let's add query translatio n technique
-         # Read the question and route it to appropriate function
         ghg_requirements = self.doc_processor.query_documents(
             question,
             doc_name="ghg_protocol",
@@ -179,6 +171,7 @@ Data Records:
             ghg_requirements_txt += f"{i+1}. {context['content']} \n\n"
 
         chain = self.validate_scope2_prompt | self.llm
+
         response = chain.invoke({
             'ghg_context':ghg_requirements_txt,
             'human_summary':validation_result['summary'],
@@ -192,7 +185,14 @@ Data Records:
         }
     
     def compare_with_peers(self, question: str, peer_docs: List[str]) -> Dict:
-        """Compare emissions with peer companies"""
+        """Summarize peer reports using LLM and compare with company's emissions data.
+        Both peer report summaries and company's emissions data summary are passed into LLM
+        for final output.
+        
+        params:
+            question: str, User question
+            peer_docs: List[str], List of peer report names
+        """
         peer_report_summary_txt = ""
         for peer_doc in peer_docs:
             with open(f"data/processed/{peer_doc}_text.txt", "r") as f:

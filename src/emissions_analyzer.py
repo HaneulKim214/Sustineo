@@ -3,14 +3,6 @@ import numpy as np
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
-@dataclass
-class EmissionsInsight:
-    """Container for emissions insights"""
-    category: str
-    value: float
-    percentage: float
-    trend: str
-    recommendation: str
 
 class EmissionsAnalyzer:
     """Analyze emissions data and generate insights"""
