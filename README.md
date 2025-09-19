@@ -1,6 +1,6 @@
 # 🌿 Sustineo
 
-An AI Agent specialized in analyzing greenhouse gas emissions inventory, identifying reduction opportunities, and ensuring GHG Protocol compliance.
+Sustainability AI Agent specialized in analyzing greenhouse gas emissions inventory, identifying reduction opportunities, and ensuring GHG Protocol compliance.
 
 ## 🎯 Features
 
