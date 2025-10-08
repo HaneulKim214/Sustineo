@@ -2,6 +2,9 @@
 
 Sustainability AI Agent specialized in analyzing greenhouse gas emissions inventory, identifying reduction opportunities, and ensuring GHG Protocol compliance.
 
+![Uploading image.png…]()
+
+
 ## 🎯 Features
 
 - **📊 Emissions analysis**: Scope 1, 2, and 3 with summaries and totals
