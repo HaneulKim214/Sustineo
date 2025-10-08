@@ -6,12 +6,12 @@ Our Agent Sustineo interacts with its sub-agents(Quality Assessor, Emissions Ana
 
 Given source data, it first passes it to sub-agents to initialize vector database, extract summary, perform analysis that will become sources used for Q&A, insight generation, validity check, and peer benchmarking. There are three sub-agents:
 1. **Quality Assessor**: Assess whether data is correctly formatted and have neccessary data for GHG analysis.
-2. **Emissions Analyzer**: Perform data analysis on tabular data then convert to natural language. Analysis such as amount of emissions per facility, energy type, monthly increase in amount of emissions, etc... are converted to something like "CompanyA have largest emissions in Office heating ( 4,500COe) and has increased on average 15% per month in the past year".
+2. **Emissions Analyzer**: Perform data analysis on tabular data then convert to natural language. Analysis include informations such as amount of emissions per facility, energy type, monthly increase in amount of emissions, etc... which are then converted to something like "CompanyA have largest emissions in Office heating ( 4,500COe) and has increased on average 15% per month in the past year".
 3. **Document Processor**: Create a vector database.
 
-Once source data were analyzed and converted to suitable format, our agent is ready to handle any questions that our client asks.
+Once source data were analyzed and converted to saved, our agent is ready to handle any questions.
 
-When client asks a question, depending on the question it fills specialized prompts with appropriate data to answer questions.
+When client asks a question, depending on the question it fills specialized prompts with appropriate data before going straight to answers. This ensures agent only provides most accurate informations.
 
 Example:
 ```bash
@@ -35,7 +35,7 @@ Reasoning for Classification:
 ## Sub-agent: Document Processor
 ![others/RAG.png](others/RAG.png)
 
-RAG system that robustly handles PDFs whether it is scanned or text-based. It processes tabular data and pdfs then perform appropriate chunking before embedding. Each source is created into separate vector database for faster lookup and to provide reference. Additionally, each chunk has metadata containing its source and location from the source text so that users can double check for hallucinations.
+RAG system that robustly handles PDFs no matter whether data is scanned or text-based. It processes tabular data and pdfs then perform appropriate chunking before embedding. Each source generates separate vector database for faster lookup and reference. Additionally, each chunk has metadata containing its source and location from the source text so that users can double check for hallucinations. 
 
 
 ## 🎯 Features
