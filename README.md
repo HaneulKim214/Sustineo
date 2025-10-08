@@ -1,8 +1,41 @@
 # 🌿 Sustineo
 
-Sustainability AI Agent specialized in analyzing greenhouse gas emissions inventory, identifying reduction opportunities, and ensuring GHG Protocol compliance.
+Our Agent Sustineo interacts with its sub-agents(Quality Assessor, Emissions Analyzer, Document processor) to support Q&A with factual grounding, GHG inventory analysis, validate whether it is aligned with regulations, peer benchmarking, and provide insights. 
 
-![Uploading image.png…]()
+![data/others/architecture.png](data/others/architecture.png)
+
+Given source data, it first passes it to sub-agents to initialize vector database, extract summary, perform analysis that will become sources used for Q&A, insight generation, validity check, and peer benchmarking. There are three sub-agents:
+1. **Quality Assessor**: Assess whether data is correctly formatted and have neccessary data for GHG analysis.
+2. **Emissions Analyzer**: Perform data analysis on tabular data then convert to natural language. Analysis such as amount of emissions per facility, energy type, monthly increase in amount of emissions, etc... are converted to something like "CompanyA have largest emissions in Office heating ( 4,500COe) and has increased on average 15% per month in the past year".
+3. **Document Processor**: Create a vector database.
+
+Once source data were analyzed and converted to suitable format, our agent is ready to handle any questions that our client asks.
+
+When client asks a question, depending on the question it fills specialized prompts with appropriate data to answer questions.
+
+Example:
+```bash
+
+User:
+Should employee business travel be classified as Scope 1 or Scope 3, explain the reasoning and describe how I can calculate my business travel emissions.
+
+Sustineo:
+Based on the GHG Protocol guidelines and the provided emissions data, employee business travel should be classified as **Scope 3**.
+
+Reasoning for Classification:
+1.  GHG Protocol Definition of Scope 3: The GHG Protocol defines Scope 3 emissions as "a consequence of the activities of the company, but occur from sources not owned or controlled by the company." (Context 3).
+2.  Ownership and Control: The key determinant for classifying emissions as Scope 1 or Scope 3 is whether the emission sources are "owned or controlled by the company." (Context 1).
+    * Scope 1 emissions are direct emissions from sources owned or controlled by the company (e.g., company-owned vehicles, stationary combustion at company facilities).
+    * Scope 3 emissions are indirect emissions that occur in the value chain of the reporting company, but from sources not owned or controlled by the company.
+3.  Employee Business Travel: When employees travel for business, they typically use commercial airlines, rental cars, taxis, or their personal vehicles. In these scenarios, the company does not own or directly...
+```
+
+
+
+## Sub-agent: Document Processor
+![data/others/RAG.png](data/others/RAG.png)
+
+RAG system that robustly handles PDFs whether it is scanned or text-based. It processes tabular data and pdfs then perform appropriate chunking before embedding. Each source is created into separate vector database for faster lookup and to provide reference. Additionally, each chunk has metadata containing its source and location from the source text so that users can double check for hallucinations.
 
 
 ## 🎯 Features
@@ -60,13 +93,6 @@ import pytesseract
 pytesseract.pytesseract.tesseract_cmd = "/path/to/tesseract"
 ```
 
-## Run the demo
-
-```bash
-python demo.py
-```
-
-Outputs will be written to `demo_outputs/`.
 
 ## 📁 Project structure
 
@@ -96,3 +122,7 @@ sustineo/
     ├── quality_assessor.py
     └── utils.py
 ```
+
+## Upcoming features:
+- Better OCR: extract table from image, graph support.
+- Super fast lookup with ScaNN for scalable architecture: [Accelerating large scale inference with anisotropic vector quantization](https://medium.com/@haneulkim/paper-review-accelerating-large-scale-inference-with-anisotropic-vector-quantization-part-ii-167c219ac902)
