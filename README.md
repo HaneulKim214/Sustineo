@@ -2,7 +2,7 @@
 
 Our Agent Sustineo interacts with its sub-agents(Quality Assessor, Emissions Analyzer, Document processor) to support Q&A with factual grounding, GHG inventory analysis, validate whether it is aligned with regulations, peer benchmarking, and provide insights. 
 
-![data/others/architecture.png](data/others/architecture.png)
+![others/architecture.png](others/architecture.png)
 
 Given source data, it first passes it to sub-agents to initialize vector database, extract summary, perform analysis that will become sources used for Q&A, insight generation, validity check, and peer benchmarking. There are three sub-agents:
 1. **Quality Assessor**: Assess whether data is correctly formatted and have neccessary data for GHG analysis.
@@ -33,7 +33,7 @@ Reasoning for Classification:
 
 
 ## Sub-agent: Document Processor
-![data/others/RAG.png](data/others/RAG.png)
+![others/RAG.png](others/RAG.png)
 
 RAG system that robustly handles PDFs whether it is scanned or text-based. It processes tabular data and pdfs then perform appropriate chunking before embedding. Each source is created into separate vector database for faster lookup and to provide reference. Additionally, each chunk has metadata containing its source and location from the source text so that users can double check for hallucinations.
 
