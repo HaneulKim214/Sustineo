@@ -1,6 +1,6 @@
 # 🌿 Sustineo
 
-Our Agent Sustineo interacts with its sub-agents(Quality Assessor, Emissions Analyzer, Document processor) to support Q&A with factual grounding, GHG inventory analysis, validate whether it is aligned with regulations, peer benchmarking, and provide insights. 
+Our Agent Sustineo interacts with its sub-agents(Quality Assessor, Emissions Analyzer, Document processor) to support Q&A, GHG inventory analysis, validate whether it is aligned with regulations, peer benchmarking, and provide insights. RAG, validity checker and prompt engineering are used to ensure provided answers are factual.
 
 ![others/architecture.png](others/architecture.png)
 
