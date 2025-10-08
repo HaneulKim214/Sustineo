@@ -16,10 +16,10 @@ When client asks a question, depending on the question it fills specialized prom
 Example:
 ```bash
 
-User:
+<User>
 Should employee business travel be classified as Scope 1 or Scope 3, explain the reasoning and describe how I can calculate my business travel emissions.
 
-Sustineo:
+<Sustineo>
 Based on the GHG Protocol guidelines and the provided emissions data, employee business travel should be classified as **Scope 3**.
 
 Reasoning for Classification:
