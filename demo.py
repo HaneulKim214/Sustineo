@@ -18,7 +18,7 @@ print("Agent initialized successfully!")
 
 # Q1
 question1 = """Should employee business travel be classified as Scope 1 or Scope 3? 
-Explain the reasoning and describe how I can calculate my business travel emissions?"""
+Explain the reasoning and describe how I can calculate my business travel emissions."""
 response1 = agent.answer_question(question1)
 print("Question1:", response1['question'])
 print()
