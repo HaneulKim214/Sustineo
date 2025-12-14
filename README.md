@@ -1,6 +1,6 @@
 # 🌿 Sustineo
 
-Our Agent Sustineo interacts with its sub-agents(Quality Assessor, Emissions Analyzer, Document processor) to support Q&A, GHG inventory analysis, validate whether it is aligned with regulations, peer benchmarking, and provide insights. RAG, validity checker and prompt engineering are used to ensure provided answers are factual.
+Our Agent Sustineo is an AI agent that conduct Green House Gas inventory analysis, generates actionable insights, validates reports to see if it adhere to the GHG protocol, and support Q&A by interacting with its sub-agents(Document processor, Emission Analyzer, and Quality Assessor). Given the critical nature of ESG reporting, in order to ensure data integrity, RAG architecture is utilized to reduce hallucination.
 
 ![others/architecture.png](others/architecture.png)
 
